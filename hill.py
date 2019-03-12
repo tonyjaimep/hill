@@ -1,8 +1,6 @@
 import numpy as np
-from numpy import matrix
 
-# caracteres = "\"'AÁBCDEÉFGHIÍJKLMNÑOÓPQRTSUÚVWXYZaábcdeéghiíjklmnñoópqrtsuúvwxyz0123456789-_,{}[]()*+. \n"
-caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+caracteres = "\"'AÁBCDEÉFGHIÍJKLMNÑOÓPQRTSUÚVWXYZaábcdeéghiíjklmnñoópqrtsuúvwxyz0123456789-_,{}[]()*+. \n"
 modulo = len(caracteres)
 
 nums_llave = []
@@ -25,7 +23,8 @@ def inverso_modular(n, p):
       return i
   raise ValueError("{} no tiene inverso módulo {}".format(n, p))
 
-def minor(A,i,j):    # Return matrix A with the ith row and jth column deleted
+# regresa la matriz sin la fila i y la columna j
+def minor(A,i,j):
   A=np.array(A)
   minor=np.zeros(shape=(len(A)-1,len(A)-1))
   p=0
@@ -103,8 +102,10 @@ def main():
             bloques_llave.append(nums_llave[i:i + 3])
 
         # si la determinante de la llave es 0
-        if not len(llave) == 9 or np.linalg.det(np.array(bloques_llave)) == 0:
+        if not len(llave) == 9:
             print("Llave inválida. Debe de contener 9 caracteres.")
+        elif np.linalg.det(np.array(bloques_llave)) == 0:
+            print("Llave inválida. La determinante es 0.")
         else:
             break
 
@@ -120,8 +121,6 @@ def main():
     with open("res.txt", "w") as archivo_encriptado:
         archivo_encriptado.write(texto_codificado)
         print("Texto {} escrito en res.txt".format(opcion[:-1] + "do"))
-
-# def encriptar(texto, llave):
 
 if __name__ == "__main__":
     main()
