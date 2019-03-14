@@ -118,9 +118,11 @@ def main():
 
     print("Texto codificado: {}".format(texto_codificado))
 
-    with open("res.txt", "w") as archivo_encriptado:
+    nombre_archivo_encriptado = input("Introduzca el nombre del archivo donde se escribirá el resultado: ")
+
+    with open(nombre_archivo_encriptado, "w") as archivo_encriptado:
         archivo_encriptado.write(texto_codificado)
-        print("Texto {} escrito en res.txt".format(opcion[:-1] + "do"))
+        print("Texto {} escrito en {}".format(opcion[:-1] + "do", nombre_archivo_encriptado))
 
 if __name__ == "__main__":
     main()
